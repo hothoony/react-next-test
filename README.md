@@ -227,6 +227,60 @@ export default MyApp
 ```
 
 ## 글로벌 스타일 적용
+글로벌 스타일 파일
 ```
 myapp/styles/globals.css
+```
+_app.js 에 등록되어 있음
+```javascript
+import '../styles/globals.css' // HERE
+import Layout from '../mycompo/Layout'
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
+}
+
+export default MyApp
+```
+
+## 개별 컴포넌트에 스타일 적용
+css 파일 만들기
+```css
+/* myapp/styles/NavBar.module.css */
+
+.text {
+    color: blue;
+}
+```
+NavBar.js 에 스타일 적용
+```javascript
+// import
+import styles from '../styles/NavBar.module.css'
+
+// 스타일 적용
+<a className={styles.text}>
+```
+적용 소스
+```javascript
+// myapp/mycompo/NavBar.js
+
+import Link from 'next/link'
+import styles from '../styles/NavBar.module.css'
+
+const NavBar = () => {
+    return (
+        <nav>
+            {/* <h1>NavBar</h1> */}
+            <Link href="/"><a className={styles.text}>Home</a></Link>
+            <Link href="/about"><a className={styles.text}>About</a></Link>
+            <Link href="/products"><a className={styles.text}>Products</a></Link>
+            <Link href="/products/test"><a className={styles.text}>test</a></Link>
+        </nav>
+    );
+}
+export default NavBar;
 ```
