@@ -284,3 +284,5 @@ const NavBar = () => {
 }
 export default NavBar;
 ```
+
+## 404 페이지
