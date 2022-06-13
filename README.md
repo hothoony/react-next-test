@@ -70,12 +70,11 @@ export default Test2;
 ```
 
 브라우저에서 확인
+- 브라우저에서는 파일명 url 로 접근한다
 ```
-http://localhost:3000/products/test2 로는 접속이 안된고
-http://localhost:3000/products/test 로 접속된다
+http://localhost:3000/products/test  (O)
+http://localhost:3000/products/test2 (X)
 ```
-
-브라우저에서 접속시에는 URI 가 파일명 기준이다
 
 ## 서브폴더 url 추가하기 2
 
@@ -126,7 +125,7 @@ import NavBar from '../mycompo/NavBar'
 // 컴포넌트 추가
 <NavBar />
 ```
-적용 소스
+전체 소스
 ```javascript
 // myapp/pages/index.js
 
@@ -153,7 +152,7 @@ import Link from 'next/link'
 // <Link> 사용
 <Link href="/"><a>Home</a></Link>
 ```
-적용 소스
+전체 소스
 ```javascript
 // myapp/mycompo/NavBar.js
 
@@ -247,7 +246,7 @@ function MyApp({ Component, pageProps }) {
 export default MyApp
 ```
 
-## 개별 컴포넌트에 스타일 적용
+## 컴포넌트에 개별 스타일 적용
 css 파일 만들기
 ```css
 /* myapp/styles/NavBar.module.css */
@@ -264,7 +263,7 @@ import styles from '../styles/NavBar.module.css'
 // 스타일 적용
 <a className={styles.text}>
 ```
-적용 소스
+전체 소스
 ```javascript
 // myapp/mycompo/NavBar.js
 
@@ -286,3 +285,150 @@ export default NavBar;
 ```
 
 ## 404 페이지
+
+404 에러 페이지 만들기
+```javascript
+// pages/404.js
+
+import Link from 'next/link'
+
+const NotFound = () => {
+    return (
+        <div className="not-found">
+            <h1>Not Found</h1>
+            <p><Link href="/"><a>back to Homepage</a></Link></p>
+        </div>
+    );
+}
+export default NotFound;
+```
+
+404 에러 페이지에 스타일 적용
+```css
+/* styles/globals.css */
+
+.not-found {
+    color: #4979ff;
+    text-decoration: underline;
+}
+```
+
+## Redirect
+
+404 에러 페이지 노출시 3초 경과후에 인덱스로 페이지로 자동 이동하기
+- useEffect 사용
+- useRouter 사용
+
+```javascript
+// pages/404.js
+
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+const router = useRouter();
+
+useEffect(() => {
+    setTimeout(() => {
+        router.push('/');
+    }, 3000);
+});
+```
+
+## Image
+
+이미지 파일 준비
+```
+myapp/public/logo.png
+```
+
+img 태그로 이미지 삽입
+```javascript
+// pages/index.js
+
+export default function Home() {
+  return (
+    <div>
+      <div>
+        <img src="/logo.png" />
+      </div>
+      <h1>Homepage</h1>
+    </div>
+  )
+}
+```
+
+Image 로 이미지 삽입
+```javascript
+import Image from 'next/Image'
+
+export default function Home() {
+  return (
+    <div>
+      <div>
+        <Image src="/logo.png" width={100} height={100} />
+      </div>
+      <h1>Homepage</h1>
+    </div>
+  )
+}
+```
+
+## Metadata
+
+Head 추가
+```javascript
+import Head from 'next/head'
+
+return (
+    <>
+        <Head>
+            <title>My Website</title>
+            <meta name="keywords" content="my homepage" />
+        </Head>
+    </>
+);
+```
+
+## fetch Data - items
+
+http://localhost:3000/jsonData
+
+```javascript
+// myapp/pages/items/index.js
+
+export const getStateProps = async () => {
+    console.log('getStateProps');
+
+    const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    const data = await res.json();
+    return {
+        props: { items: data }
+    };
+};
+
+const Items = ({ items }) => {
+    console.log('items', items);
+    return (
+        <div>
+            <h1>All items</h1>
+            {items && items.map(item => (
+                <div key={item.id}>
+                    <a>
+                        <h3>{item.name}</h3>
+                    </a>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export default Items;
+```
+
+## fetch Data - each item
+
+http://localhost:3000/jsonData/id
+
+```javascript
+// myapp/pages/items/[id].js
+```
