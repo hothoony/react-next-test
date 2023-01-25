@@ -14,7 +14,7 @@
 - better search engine optimization (SEO)
 
 ## 프로젝트 생성 & 실행
-프로젝트 생성
+`create-next-app` 으로 프로젝트를 생성한다
 ```bash
 npx create-next-app myapp
 ```
@@ -33,7 +33,7 @@ http://localhost:3000
 
 소스 파일 생성 `about.js`
 ```javascript
-// myapp/pages/about.js
+// next_proj_dir/pages/about.js
 
 const About = () => {
     return (
@@ -56,7 +56,7 @@ http://localhost:3000/about
 - 서브 폴더 하위에 소스 파일을 생성한다 `pages/products/test.js`
 - 파일명 `test.js` 과 소스안에 함수명 `Test2` 를 다르게 작성한다
 ```javascript
-// myapp/pages/products/test.js
+// next_proj_dir/pages/products/test.js
 
 const Test2 = () => {
     return (
@@ -81,7 +81,7 @@ http://localhost:3000/products/test2 (X)
 - 서브 폴더에 소스파일을 생성한다 `pages/products/index.js`
 - 파일명이 `index.js` 이다
 ```javascript
-// myapp/pages/products/index.js
+// next_proj_dir/pages/products/index.js
 
 const Products = () => {
     return (
@@ -102,7 +102,7 @@ http://localhost:3000/products
 
 컴포넌트 만들기
 ```javascript
-// myapp/mycompo/NavBar.js
+// next_proj_dir/mycompo/NavBar.js
 
 const NavBar = () => {
     return (
@@ -127,7 +127,7 @@ import NavBar from '../mycompo/NavBar'
 ```
 전체 소스
 ```javascript
-// myapp/pages/index.js
+// next_proj_dir/pages/index.js
 
 import Head from 'next/head'
 import Image from 'next/image'
@@ -154,7 +154,7 @@ import Link from 'next/link'
 ```
 전체 소스
 ```javascript
-// myapp/mycompo/NavBar.js
+// next_proj_dir/mycompo/NavBar.js
 
 import Link from 'next/link'
 
@@ -175,7 +175,7 @@ export default NavBar;
 
 Layout.js 만들기
 ```javascript
-// myapp/mycompo/Layout.js
+// next_proj_dir/mycompo/Layout.js
 
 import NavBar from '../mycompo/NavBar'
 import Footer from '../mycompo/Footer'
@@ -197,7 +197,7 @@ _app.js 수정하기
 
 - 수정전
 ```javascript
-// myapp/pages/_app.js
+// next_proj_dir/pages/_app.js
 
 import '../styles/globals.css'
 
@@ -209,7 +209,7 @@ export default MyApp
 ```
 - 수정후
 ```javascript
-// myapp/pages/_app.js
+// next_proj_dir/pages/_app.js
 
 import '../styles/globals.css'
 import Layout from '../mycompo/Layout'
@@ -228,7 +228,7 @@ export default MyApp
 ## 글로벌 스타일 적용
 글로벌 스타일 파일
 ```
-myapp/styles/globals.css
+next_proj_dir/styles/globals.css
 ```
 _app.js 에 등록되어 있음
 ```javascript
@@ -249,7 +249,7 @@ export default MyApp
 ## 컴포넌트에 개별 스타일 적용
 css 파일 만들기
 ```css
-/* myapp/styles/NavBar.module.css */
+/* next_proj_dir/styles/NavBar.module.css */
 
 .text {
     color: blue;
@@ -265,7 +265,7 @@ import styles from '../styles/NavBar.module.css'
 ```
 전체 소스
 ```javascript
-// myapp/mycompo/NavBar.js
+// next_proj_dir/mycompo/NavBar.js
 
 import Link from 'next/link'
 import styles from '../styles/NavBar.module.css'
@@ -338,7 +338,7 @@ useEffect(() => {
 
 이미지 파일 준비
 ```
-myapp/public/logo.png
+next_proj_dir/public/logo.png
 ```
 
 img 태그로 이미지 삽입
@@ -394,7 +394,7 @@ return (
 http://localhost:3000/jsonData
 
 ```javascript
-// myapp/pages/items/index.js
+// next_proj_dir/pages/items/index.js
 
 export const getStateProps = async () => {
     console.log('getStateProps');
@@ -430,5 +430,5 @@ export default Items;
 http://localhost:3000/jsonData/id
 
 ```javascript
-// myapp/pages/items/[id].js
+// next_proj_dir/pages/items/[id].js
 ```
