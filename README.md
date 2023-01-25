@@ -13,13 +13,13 @@
 - pre-rendering improves performance
 - better search engine optimization (SEO)
 
-## 프로젝트 생성 & 실행
+## 프로젝트 생성
 `create-next-app` 으로 프로젝트를 생성한다
 ```bash
 npx create-next-app myapp
 ```
 
-프로젝트 실행
+## 프로젝트 실행
 ```bash
 npm run dev
 ```
